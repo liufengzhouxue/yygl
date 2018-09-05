@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yygl-project:war">
+    <output-path>$PROJECT_DIR$/yygl-project/target</output-path>
+    <root id="archive" name="yycgproject.war">
+      <element id="artifact" artifact-name="yygl-project:war exploded" />
+    </root>
+  </artifact>
+</component>

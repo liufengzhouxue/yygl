@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yygl.iml" filepath="$PROJECT_DIR$/yygl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygl-project/yygl-project.iml" filepath="$PROJECT_DIR$/yygl-project/yygl-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygl-util/yygl-util.iml" filepath="$PROJECT_DIR$/yygl-util/yygl-util.iml" />
+    </modules>
+  </component>
+</project>
