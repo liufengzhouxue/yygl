@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.mapper.ErrorTaskBackupMapper" >
+  <resultMap id="BaseResultMap" type="yycg.base.pojo.ErrorTaskBackup" >
+    <result column="TASKID" property="taskid" jdbcType="VARCHAR" />
+    <result column="WSURL" property="wsurl" jdbcType="VARCHAR" />
+    <result column="WSMETHOD" property="wsmethod" jdbcType="VARCHAR" />
+    <result column="WSNAMESPACE" property="wsnamespace" jdbcType="VARCHAR" />
+    <result column="VCHAR1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="VCHAR2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="VCHAR3" property="vchar3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TASKID, WSURL, WSMETHOD, WSNAMESPACE, VCHAR1, VCHAR2, VCHAR3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.base.pojo.ErrorTaskBackupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ERROR_TASK_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="yycg.base.pojo.ErrorTaskBackupExample" >
+    delete from ERROR_TASK_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.base.pojo.ErrorTaskBackup" >
+    insert into ERROR_TASK_BACKUP (TASKID, WSURL, WSMETHOD, 
+      WSNAMESPACE, VCHAR1, VCHAR2, 
+      VCHAR3)
+    values (#{taskid,jdbcType=VARCHAR}, #{wsurl,jdbcType=VARCHAR}, #{wsmethod,jdbcType=VARCHAR}, 
+      #{wsnamespace,jdbcType=VARCHAR}, #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, 
+      #{vchar3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.base.pojo.ErrorTaskBackup" >
+    insert into ERROR_TASK_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        TASKID,
+      </if>
+      <if test="wsurl != null" >
+        WSURL,
+      </if>
+      <if test="wsmethod != null" >
+        WSMETHOD,
+      </if>
+      <if test="wsnamespace != null" >
+        WSNAMESPACE,
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1,
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2,
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        #{taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="wsurl != null" >
+        #{wsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="wsmethod != null" >
+        #{wsmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="wsnamespace != null" >
+        #{wsnamespace,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.base.pojo.ErrorTaskBackupExample" resultType="java.lang.Integer" >
+    select count(*) from ERROR_TASK_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERROR_TASK_BACKUP
+    <set >
+      <if test="record.taskid != null" >
+        TASKID = #{record.taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsurl != null" >
+        WSURL = #{record.wsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsmethod != null" >
+        WSMETHOD = #{record.wsmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsnamespace != null" >
+        WSNAMESPACE = #{record.wsnamespace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ERROR_TASK_BACKUP
+    set TASKID = #{record.taskid,jdbcType=VARCHAR},
+      WSURL = #{record.wsurl,jdbcType=VARCHAR},
+      WSMETHOD = #{record.wsmethod,jdbcType=VARCHAR},
+      WSNAMESPACE = #{record.wsnamespace,jdbcType=VARCHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

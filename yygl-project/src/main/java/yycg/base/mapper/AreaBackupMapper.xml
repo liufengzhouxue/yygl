@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.mapper.AreaBackupMapper" >
+  <resultMap id="BaseResultMap" type="yycg.base.pojo.AreaBackup" >
+    <id column="AREAID" property="areaid" jdbcType="VARCHAR" />
+    <result column="AREACODE" property="areacode" jdbcType="VARCHAR" />
+    <result column="AREANAME" property="areaname" jdbcType="VARCHAR" />
+    <result column="AREALEVEL" property="arealevel" jdbcType="CHAR" />
+    <result column="AREAFULLNAME" property="areafullname" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="VARCHAR" />
+    <result column="VCHAR1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="VCHAR2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="VCHAR3" property="vchar3" jdbcType="VARCHAR" />
+    <result column="ISUSED" property="isused" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AREAID, AREACODE, AREANAME, AREALEVEL, AREAFULLNAME, PARENTID, VCHAR1, VCHAR2, VCHAR3, 
+    ISUSED
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.base.pojo.AreaBackupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AREA_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AREA_BACKUP
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AREA_BACKUP
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.base.pojo.AreaBackupExample" >
+    delete from AREA_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.base.pojo.AreaBackup" >
+    insert into AREA_BACKUP (AREAID, AREACODE, AREANAME, 
+      AREALEVEL, AREAFULLNAME, PARENTID, 
+      VCHAR1, VCHAR2, VCHAR3, 
+      ISUSED)
+    values (#{areaid,jdbcType=VARCHAR}, #{areacode,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, 
+      #{arealevel,jdbcType=CHAR}, #{areafullname,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, #{vchar3,jdbcType=VARCHAR}, 
+      #{isused,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.base.pojo.AreaBackup" >
+    insert into AREA_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        AREAID,
+      </if>
+      <if test="areacode != null" >
+        AREACODE,
+      </if>
+      <if test="areaname != null" >
+        AREANAME,
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL,
+      </if>
+      <if test="areafullname != null" >
+        AREAFULLNAME,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1,
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2,
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3,
+      </if>
+      <if test="isused != null" >
+        ISUSED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        #{arealevel,jdbcType=CHAR},
+      </if>
+      <if test="areafullname != null" >
+        #{areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="isused != null" >
+        #{isused,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.base.pojo.AreaBackupExample" resultType="java.lang.Integer" >
+    select count(*) from AREA_BACKUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update AREA_BACKUP
+    <set >
+      <if test="record.areaid != null" >
+        AREAID = #{record.areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areacode != null" >
+        AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaname != null" >
+        AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arealevel != null" >
+        AREALEVEL = #{record.arealevel,jdbcType=CHAR},
+      </if>
+      <if test="record.areafullname != null" >
+        AREAFULLNAME = #{record.areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        PARENTID = #{record.parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isused != null" >
+        ISUSED = #{record.isused,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update AREA_BACKUP
+    set AREAID = #{record.areaid,jdbcType=VARCHAR},
+      AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      AREALEVEL = #{record.arealevel,jdbcType=CHAR},
+      AREAFULLNAME = #{record.areafullname,jdbcType=VARCHAR},
+      PARENTID = #{record.parentid,jdbcType=VARCHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      ISUSED = #{record.isused,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.base.pojo.AreaBackup" >
+    update AREA_BACKUP
+    <set >
+      <if test="areacode != null" >
+        AREACODE = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        AREANAME = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL = #{arealevel,jdbcType=CHAR},
+      </if>
+      <if test="areafullname != null" >
+        AREAFULLNAME = #{areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="isused != null" >
+        ISUSED = #{isused,jdbcType=CHAR},
+      </if>
+    </set>
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.base.pojo.AreaBackup" >
+    update AREA_BACKUP
+    set AREACODE = #{areacode,jdbcType=VARCHAR},
+      AREANAME = #{areaname,jdbcType=VARCHAR},
+      AREALEVEL = #{arealevel,jdbcType=CHAR},
+      AREAFULLNAME = #{areafullname,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      ISUSED = #{isused,jdbcType=CHAR}
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </update>
+</mapper>
