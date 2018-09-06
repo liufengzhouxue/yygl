@@ -63,7 +63,15 @@
            //alert(row.id);
             return "<a href='${baseurl}user/deletesysuser.action?id="+row.id+"'>删除</a>";
         }
-    } ] ];
+    } ,{
+        field : 'opt2',//对应json中的key
+        title : '修改',
+        width : 120,
+        formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
+            //alert(row.id);
+            return "<a href=javascript:editsysuser('"+row.id+"')>修改</a>";
+        }
+    }] ];
 
 	//定义 datagird工具
 	var toolbar_v = [ {//工具栏
@@ -101,6 +109,9 @@
 		//将form表单数据提取出来，组成一个json
 		var formdata = $("#sysuserqueryForm").serializeJson();
 		$('#sysuserlist').datagrid('load',formdata);
+	}
+	function editsysuser(id){
+        createmodalwindow("修改用户信息", 800, 250, '${baseurl}user/editsysuser.action?id='+id);
 	}
 	// function deleteuser(id){
 	//     _confirm("您确定删除吗？",null,function(){

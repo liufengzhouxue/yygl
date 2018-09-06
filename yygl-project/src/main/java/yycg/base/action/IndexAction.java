@@ -13,7 +13,7 @@ public class IndexAction {
     @Autowired
     private UserService userService;
     @RequestMapping("/first")
-    public String toIndex(Model model){
+    public String toIndex(Model model) throws  Exception{
         Sysuser sysuser=userService.findUserById("189");
         model.addAttribute("sysuser",sysuser);
         return  "base/first";

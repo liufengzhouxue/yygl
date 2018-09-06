@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import yycg.base.pojo.Sysuser;
 import yycg.base.pojo.vo.PageQuery;
 import yycg.base.pojo.vo.SubmitResultInfo;
 import yycg.base.pojo.vo.SysuserCustom;
@@ -84,5 +85,27 @@ public class UserAction {
         return  info;
     }
     //修改用户
+    //修改表单的回显
+    @RequestMapping("/editsysuser")
+    public String edituser(String id,Model model) throws  Exception{
+        SysuserCustom sysuserCustom= userService.findUserById(id);
+        model.addAttribute("sysuserCustom",sysuserCustom);
+        return "base/user/editsysuser";
+    }
+    //修改表单的回显
+    @RequestMapping("/editsysusersubmit")
+    @ResponseBody
+    public SubmitResultInfo editusersubmit(String id,SysuserQueryVo sysuserQueryVo) throws  Exception{
+        SubmitResultInfo info=new SubmitResultInfo();
+        try{
+            userService.updateSysuser(id,sysuserQueryVo.getSysuserCustom());
+           info.setType(0);
+           info.setMessage("修改成功");
+        }catch (Exception e){
+            info.setType(1);
+            info.setMessage("修改失败");
+        }
+        return info;
+    }
 
 }
