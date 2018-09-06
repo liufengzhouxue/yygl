@@ -11,4 +11,6 @@ public interface UserService {
     public Sysuser findUserById(String id);
     public List<SysuserCustom> findSysuserList(SysuserQueryVo sysuserQueryVo);
     public int findSysuserCount(SysuserQueryVo sysuserQueryVo);
+    public void insertUser(SysuserCustom sysuserCustom) throws  Exception;
+    public void deleteSysuser(String id) throws  Exception;
 }

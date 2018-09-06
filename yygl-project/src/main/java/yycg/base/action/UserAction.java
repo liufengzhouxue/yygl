@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import yycg.base.pojo.vo.PageQuery;
+import yycg.base.pojo.vo.SubmitResultInfo;
 import yycg.base.pojo.vo.SysuserCustom;
 import yycg.base.pojo.vo.SysuserQueryVo;
 import yycg.base.process.result.DataGridResultInfo;
 import yycg.base.service.UserService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -41,5 +44,43 @@ public class UserAction {
         return info;
     }
     //新增用户
+    //进入添加页面
+    @RequestMapping("/addsysuser")
+    public String toInsertUser(){
+        return "base/user/addsysuser";
+    }
+    //提交方法
+    @RequestMapping("/addsysusersubmit")
+    @ResponseBody
+    public SubmitResultInfo addsysuersubmit(Model model, SysuserQueryVo sysuserQueryVo) throws Exception{
+        //提示用户信息
+        SubmitResultInfo info=new SubmitResultInfo();
+        try {
+            userService.insertUser(sysuserQueryVo.getSysuserCustom());
+            info.setMessage("添加成功");
+            info.setType(0);
+        }catch (Exception e){
+            e.printStackTrace();
+            info.setType(1);
+            info.setMessage("添加失败");
+        }
 
+        return info;
+    }
+    //删除用户
+    @RequestMapping("/deletesysuser")
+    @ResponseBody
+    public SubmitResultInfo deleteSysuser(String id) throws  Exception{
+        SubmitResultInfo info=new SubmitResultInfo();
+        try {
+          userService.deleteSysuser(id);
+          info.setType(0);
+          info.setMessage("删除成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            info.setType(1);
+            info.setMessage(e.getMessage());
+        }
+        return  info;
+    }
 }

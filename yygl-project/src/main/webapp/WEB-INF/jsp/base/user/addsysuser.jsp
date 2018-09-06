@@ -27,13 +27,13 @@
   //ajax调用的回调函数，ajax请求完成调用此函数，传入的参数是action返回的结果
   function sysusersave_callback(data){
 	  
-	  message_alert(data);
+	 // message_alert(data);
 	 // alert(data.message);
-	  /* if(data.type=='0'){
+	  if(data.type=='0'){
 		  $.messager.alert('提示信息',data.message,'success');
 	  }else{
 		  $.messager.alert('提示信息',data.message,'error');
-	  } */
+	  }
 	 
 	  //action返回的是json数据
 	  //如果是成功显示一个对号

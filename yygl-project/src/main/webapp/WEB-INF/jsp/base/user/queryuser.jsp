@@ -55,7 +55,15 @@
 				return "暂停";
 			}
 		}
-	} ] ];
+	},{
+        field : 'opt1',//对应json中的key
+        title : '删除',
+        width : 120,
+        formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
+           //alert(row.id);
+            return "<a href='${baseurl}user/deletesysuser.action?id="+row.id+"'>删除</a>";
+        }
+    } ] ];
 
 	//定义 datagird工具
 	var toolbar_v = [ {//工具栏
@@ -94,6 +102,12 @@
 		var formdata = $("#sysuserqueryForm").serializeJson();
 		$('#sysuserlist').datagrid('load',formdata);
 	}
+	// function deleteuser(id){
+	//     _confirm("您确定删除吗？",null,function(){
+	//         $("#delete_id").val(id);
+	//         jquerySubByFId("sysuserdeleteform",userdel_callback,null,"json");
+	// 	})
+	// }
 </script>
 
 </head>
