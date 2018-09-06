@@ -40,5 +40,6 @@ public class UserAction {
         info.setTotal(total);
         return info;
     }
+    //新增用户
 
 }
