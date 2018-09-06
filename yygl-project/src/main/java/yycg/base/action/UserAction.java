@@ -37,7 +37,7 @@ public class UserAction {
         List<SysuserCustom> list=userService.findSysuserList(sysuserQueryVo);
         DataGridResultInfo info=new DataGridResultInfo();
         info.setRows(list);
-        info.setTotal(list.size());
+        info.setTotal(total);
         return info;
     }
 
